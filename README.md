@@ -1,7 +1,19 @@
 GraphQL Simple Blog
 ==================================
 
+This is a PoC of a simple blog GraphQL API. I used http://jsonplaceholder.typicode.com to simulate the datastore.
+
+**Evaluated features**:
+ - GraphQL Schema language
+ - Resolver aproaches
+   - Ad-hoc resolvers
+   - Class-based resolvers
+   - Object factories (compacted reusable resolvers built by using object spread)
+ - Dataloader
+
+
 Sample Queries
+--------------
 
 ```graphql
 query getPosts {
