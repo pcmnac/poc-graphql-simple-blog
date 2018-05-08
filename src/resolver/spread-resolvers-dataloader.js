@@ -36,21 +36,17 @@ const commentsByPostLoad = new DataLoader(fetchCommentsByPost);
 
 export const Post = data => ({
     ...data,
-
     author: () => userLoad.load(data.userId),
-
     comments: () => commentsByPostLoad.load(data.id),
 });
 
 export const Comment = data => ({
     ...data,
-
     post: () => postLoad.load(data.postId),
 });
 
 export const User = data => ({
     ...data,
-
     posts: postsByUserLoad.load(data.id),
 });
 
