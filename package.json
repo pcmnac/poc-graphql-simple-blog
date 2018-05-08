@@ -1,7 +1,7 @@
 {
-  "name": "simple-graphql-blog-api",
+  "name": "poc-graphql-simple-blog",
   "version": "0.0.1",
-  "description": "Starter project for an ES6 RESTful Express API",
+  "description": "A PoC of a simple blog GraphQL API",
   "main": "dist",
   "scripts": {
     "dev": "nodemon -w src --exec \"babel-node src --presets env,stage-2\"",
@@ -26,9 +26,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/developit/express-es6-rest-api.git"
+    "url": "git+https://github.com/pcmnac/poc-graphql-simple-blog.git"
   },
-  "author": "Jason Miller <jason@developit.ca>",
+  "author": "Paulo Coutinho <pcmnac@gmail.com>",
   "license": "MIT",
   "dependencies": {
     "axios": "^0.18.0",
@@ -52,9 +52,9 @@
     "nodemon": "^1.17.3"
   },
   "bugs": {
-    "url": "https://github.com/developit/express-es6-rest-api/issues"
+    "url": "https://github.com/pcmnac/poc-graphql-simple-blog/issues"
   },
-  "homepage": "https://github.com/developit/express-es6-rest-api#readme",
+  "homepage": "https://github.com/pcmnac/poc-graphql-simple-blog#readme",
   "keywords": [
     "blog",
     "graphql",

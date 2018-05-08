@@ -1,4 +1,4 @@
-GraphQL Simple Blog
+GraphQL - Simple Blog API
 ==================================
 
 This is a PoC of a simple blog GraphQL API. I used http://jsonplaceholder.typicode.com to simulate the datastore.
