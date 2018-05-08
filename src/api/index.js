@@ -20,8 +20,8 @@ api.use('/gql', graphqlHTTP({
     schema,
     // rootValue: adHocRootResolver,
     // rootValue: new ClassRootResolver(),
-    rootValue: spreadRootResolver,
-    // rootValue: spreadDataloaderRootResolver,
+    // rootValue: spreadRootResolver,
+    rootValue: spreadDataloaderRootResolver,
     graphiql: true,
 }));
 
