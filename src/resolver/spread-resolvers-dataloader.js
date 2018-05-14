@@ -21,29 +21,9 @@ const fetchComments = keys => {
         .then(({ data }) => Comment(data)).catch(() => null)));
 };
 
-// const fetchPostsByUser = keys => {
-//     console.log('loading posts from users: ', keys);
-//     return Promise.all(keys.map(id => axios.get(`http://jsonplaceholder.typicode.com/posts?userId=${id}`)
-//         .then(({ data }) => data.map(Post)).catch(() => null)));
-// };
-
-// const fetchPostsByUser = keys => {
-//     console.log('loading posts from users: ', keys);
-//     return Promise.all(keys.map(id => axios.get(`http://jsonplaceholder.typicode.com/posts?userId=${id}`)
-//         .then(({ data }) => data.map(Post)).catch(() => null)));
-// };
-
-
-// const fetchCommentsByPost = keys => {
-//     console.log('loading comments from posts: ', keys);
-//     return Promise.all(keys.map(id => axios.get(`http://jsonplaceholder.typicode.com/comments?postId=${id}`)
-//         .then(({ data }) => data.map(Comment)).catch(() => null)));
-// };
-
 const userLoad = new DataLoader(fetchUsers);
 const postLoad = new DataLoader(fetchPosts);
 const commentLoad = new DataLoader(fetchComments);
-// const commentsByPostLoad = new DataLoader(fetchCommentsByPost);
 
 // resolvers
 
