@@ -1,7 +1,7 @@
 GraphQL - Simple Blog API
 ==================================
 
-This is a PoC of a simple blog GraphQL API. I used http://jsonplaceholder.typicode.com to simulate the datastore.
+This is a PoC of a simple blog GraphQL API. It uses http://jsonplaceholder.typicode.com to simulate the datastore.
 
 **Evaluated features**:
  - GraphQL Schema language
@@ -16,7 +16,7 @@ Sample Queries
 --------------
 
 ```graphql
-query getPosts {
+query getPost {
   hello,
   post(id: 3) {
     id
@@ -38,11 +38,8 @@ query getPosts {
     comments {
       name
       email
-    	post {
-    	  id
-    	}
-      author {
-        name
+      post {
+        id
       }
     }
   }
@@ -90,7 +87,7 @@ npm run dev
 npm start
 ```
 
-> access http://localhost:8080/gpl/graphql
+> access http://localhost:8080/api/gpl/graphql
 
 License
 -------
