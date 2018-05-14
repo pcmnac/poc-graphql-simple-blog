@@ -22,7 +22,6 @@ export default buildSchema(`
         name: String!
         body: String!
         email: String
-        author: User
     }
 
     type User {
