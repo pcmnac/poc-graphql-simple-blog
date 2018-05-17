@@ -15,12 +15,12 @@ export class Post {
 
     author() {
         
-        return axios.get(`http://jsonplaceholder.typicode.com/users/${this.userId}`)
+        return axios.get(`/users/${this.userId}`)
             .then(({ data }) => new User(data));
     }
 
     comments() {
-        return axios.get(`http://jsonplaceholder.typicode.com/comments?postId=${this.id}`)
+        return axios.get(`/comments?postId=${this.id}`)
             .then(({ data }) => data.map(comment => new Comment(comment)))
     }
 
@@ -54,7 +54,7 @@ export class User {
     }
 
     posts() {
-        return axios.get(`http://jsonplaceholder.typicode.com/posts?userId=${this.id}`)
+        return axios.get(`/posts?userId=${this.id}`)
             .then(({ data }) => data.map(post => new Post(post)))
     }
 }
@@ -65,12 +65,12 @@ export default class Root {
     } 
     
     posts() {
-        return axios.get(`http://jsonplaceholder.typicode.com/posts`)
+        return axios.get(`/posts`)
             .then(({ data }) => data.map(post => new Post(post)))
     }
 
     post({ id }) {
-        return axios.get(`http://jsonplaceholder.typicode.com/posts/${id}`)
+        return axios.get(`/posts/${id}`)
             .then(({ data }) => new Post(data))
     }
 }

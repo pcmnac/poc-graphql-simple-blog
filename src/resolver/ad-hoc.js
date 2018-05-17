@@ -3,21 +3,21 @@ import axios from '../util/axios';
 
 const rootValue = {
     hello: () => 'Hello GraphQL',
-    posts: () => axios.get(`http://jsonplaceholder.typicode.com/posts`)
+    posts: () => axios.get(`/posts`)
         .then(({ data }) => data.map(post => ({
             ...post,
             // post author
-            author: () => axios.get(`http://jsonplaceholder.typicode.com/users/${post.userId}`).then(({ data }) => data),
+            author: () => axios.get(`/users/${post.userId}`).then(({ data }) => data),
             // post comments
-            comments: () => axios.get(`http://jsonplaceholder.typicode.com/comments?postId=${post.id}`).then(({ data }) => data)
+            comments: () => axios.get(`/comments?postId=${post.id}`).then(({ data }) => data)
         }))),
-    post: ({ id }) => axios.get(`http://jsonplaceholder.typicode.com/posts/${id || ''}`)
+    post: ({ id }) => axios.get(`/posts/${id || ''}`)
         .then(({ data:post }) => ({
             ...post,
             // post author
-            author: () => axios.get(`http://jsonplaceholder.typicode.com/users/${post.userId}`).then(({ data }) => data),
+            author: () => axios.get(`/users/${post.userId}`).then(({ data }) => data),
             // post comments
-            comments: () => axios.get(`http://jsonplaceholder.typicode.com/comments?postId=${post.id}`).then(({ data }) => data)
+            comments: () => axios.get(`/comments?postId=${post.id}`).then(({ data }) => data)
         })),
 };
 

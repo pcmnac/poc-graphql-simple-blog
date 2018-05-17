@@ -3,7 +3,6 @@ import { graphql } from 'graphql';
 import graphqlHTTP from 'express-graphql';
 import axios from '../util/axios';
 import morgan from 'morgan';
-import { version } from '../../package.json';
 import schema from '../schema/schema';
 import adHocRootResolver from '../resolver/ad-hoc';
 import ClassRootResolver from '../resolver/class-resolvers';
@@ -12,11 +11,7 @@ import spreadDataloaderRootResolver from '../resolver/spread-resolvers-dataloade
 
 const api = Router();
 
-api.get('/', (req, res) => {
-    res.json({ version });
-});
-
-api.use('/gql', graphqlHTTP({
+api.use('/', graphqlHTTP({
     schema,
     // rootValue: adHocRootResolver,
     // rootValue: new ClassRootResolver(),

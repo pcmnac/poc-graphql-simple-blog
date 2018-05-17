@@ -4,6 +4,8 @@ import cors from 'cors';
 import morgan from 'morgan';
 import bodyParser from 'body-parser';
 import api from './api';
+import { version } from '../package.json';
+
 
 const app = express();
 app.server = http.createServer(app);
@@ -16,7 +18,11 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // api router
-app.use('/api', api);
+app.use('/graphql', api);
+
+app.get('/', (req, res) => {
+    res.json({ version });
+});
 
 const PORT = process.env.PORT || 8080;
 

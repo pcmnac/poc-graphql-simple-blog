@@ -45,4 +45,15 @@ export default buildSchema(`
         lat: Float
         lng: Float
     }
+
+    type Mutation {
+        addComment(postId: Int!, comment:CommentInput!): Comment
+        removeComment(id: Int!): Boolean
+    }
+
+    input CommentInput {
+        name: String!
+        body: String!
+        email: String
+    }
 `);

@@ -22,4 +22,6 @@ axios.interceptors.response.use(function (response) {
     return Promise.reject(error);
 });
 
+axios.defaults.baseURL = process.env.API || 'http://jsonplaceholder.typicode.com';
+
 export default axios;

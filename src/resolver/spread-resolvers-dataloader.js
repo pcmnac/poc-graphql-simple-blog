@@ -5,19 +5,19 @@ import axios from '../util/axios';
 
 const fetchUsers = keys => {
     console.log('loading users: ', keys);
-    return Promise.all(keys.map(id => axios.get(`http://jsonplaceholder.typicode.com/users/${id}`)
+    return Promise.all(keys.map(id => axios.get(`/users/${id}`)
         .then(({ data }) => User(data)).catch(() => null)));
 };
 
 const fetchPosts = keys => {
     console.log('loading posts: ', keys);
-    return Promise.all(keys.map(id => axios.get(`http://jsonplaceholder.typicode.com/posts/${id}`)
+    return Promise.all(keys.map(id => axios.get(`/posts/${id}`)
         .then(({ data }) => Post(data)).catch(() => null)));
 };
 
 const fetchComments = keys => {
     console.log('loading comments: ', keys);
-    return Promise.all(keys.map(id => axios.get(`http://jsonplaceholder.typicode.com/comments/${id}`)
+    return Promise.all(keys.map(id => axios.get(`/comments/${id}`)
         .then(({ data }) => Comment(data)).catch(() => null)));
 };
 
@@ -30,7 +30,7 @@ const commentLoad = new DataLoader(fetchComments);
 export const Post = data => ({
     ...data,
     author: () => userLoad.load(data.userId),
-    comments: () => axios.get(`http://jsonplaceholder.typicode.com/comments?postId=${data.id}`)
+    comments: () => axios.get(`/comments?postId=${data.id}`)
         .then(({ data:comments }) => comments.map(({ id }) => commentLoad.load(id)))
         .then(commentLoaders => Promise.all(commentLoaders)),
 });
@@ -42,7 +42,7 @@ export const Comment = data => ({
 
 export const User = data => ({
     ...data,
-    posts: () => axios.get(`http://jsonplaceholder.typicode.com/posts?userId=${data.id}`)
+    posts: () => axios.get(`/posts?userId=${data.id}`)
         .then(({ data:posts }) => posts.map(({ id }) => postLoad.load(id)))
         .then(postLoaders => Promise.all(postLoaders)),
 });
@@ -50,11 +50,18 @@ export const User = data => ({
 export default {
     hello: () => 'Hello GraphQL (spread resolvers + data loader)',
 
-    posts: () => axios.get(`http://jsonplaceholder.typicode.com/posts`)
+    posts: () => axios.get(`/posts`)
         .then(({ data }) => data.map(Post)),
 
     post: ({ id }) => postLoad.load(id),
 
-    users: () => axios.get(`http://jsonplaceholder.typicode.com/users`)
+    users: () => axios.get(`/users`)
         .then(({ data }) => data.map(User)),
+
+    addComment: ({ postId, comment}) => axios.post(`/comments`, { ...comment, postId })
+        .then(({ data }) => Comment(data)),
+
+    removeComment: ({ id }) => axios.delete(`/comments/${id}`)
+    .then(() => true)
+    .catch(() => false),
 }
