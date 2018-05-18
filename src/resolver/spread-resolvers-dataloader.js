@@ -48,6 +48,9 @@ export const User = data => ({
 });
 
 export default {
+
+    //queries 
+
     hello: () => 'Hello GraphQL (spread resolvers + data loader)',
 
     posts: () => axios.get(`/posts`)
@@ -60,9 +63,10 @@ export default {
         .then(({ data:users }) => users.map(({ id }) => userLoad.load(id)))
         .then(userLoaders => Promise.all(userLoaders)),
 
+    // mutations
+
     addComment: ({ postId, comment}) => axios.post(`/comments`, { ...comment, postId })
-        .then(({ data:comments }) => comments.map(({ id }) => commentLoad.load(id)))
-        .then(commentLoaders => Promise.all(commentLoaders)),
+        .then(({ data }) => Comment(data)),
 
     removeComment: ({ id }) => axios.delete(`/comments/${id}`)
         .then(() => true)
