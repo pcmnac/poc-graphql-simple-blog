@@ -18,6 +18,7 @@ export default buildSchema(`
 
     type Comment {
         id: Int!
+        "teste"
         post: Post
         name: String!
         body: String!
